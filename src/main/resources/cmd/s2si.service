@@ -1,0 +1,11 @@
+[Unit]
+Description=S2SI
+After=syslog.target
+
+[Service]
+User=<user>
+ExecStart=<path>
+SuccessExitStatus=143
+
+[Install]
+WantedBy=multi-user.target

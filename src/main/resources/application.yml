@@ -1,0 +1,116 @@
+# Actuator Info
+info: 
+   app: 
+      encoding: "@project.build.sourceEncoding@"
+   java:
+      source: "@java.version@"
+      target: "@java.version@"
+# Actuator endpoints
+management.endpoints:
+   enabled-by-default: true
+spring:
+   # Comma-separated list (or list if using YAML) of active profiles. Override with -D
+   profiles.active: prod
+
+   # PID FILE (ApplicationPidFileWriter)
+   # Location of the PID file to write (if ApplicationPidFileWriter is used).
+   pid.file: s2si.pid
+
+   # Validate schema against hibernate models
+   jpa.hibernate:
+      ddl-auto: validate
+      naming.physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+   
+   # JMX disabled
+   jmx.enabled: false
+   
+   # JSP Disabled
+   jsp-servlet.registered: false
+   
+   # Freemarker Disabled
+   freemarker.enabled: false
+   
+   # Groovy Disabled
+   groovy.template.enabled: false
+   
+   # Spring mobile site preference handler
+   mobile.sitepreference.enabled: false
+   
+   # Standard JDBC disabled
+   session.jdbc.initializer.enabled: false
+   
+   # Thymeleaf disabled
+   thymeleaf.enabled: false
+   
+   # ActiveMQ Artemis Queue
+   artemis:
+      mode: embedded
+      embedded.persistent: true
+      
+   # JMS Listener
+   jms.listener:
+      concurrency: 5
+      max-concurrency: 10
+      
+   # EHcache
+   cache.ehcache.config: classpath:ehcache.xml
+
+   # Liquibase
+   liquibase:
+      enabled: true
+      change-log: classpath:liquibase/s2si.db.changelog.xml
+      contexts: "!test"
+   
+   # Quartz
+   quartz:
+      job-store-type: jdbc
+      jdbc.initialize-schema: never
+      properties:
+         org:
+            quartz:
+               scheduler:
+                  instanceName: s2si-quartz
+                  instanceId: AUTO
+               threadPool.threadCount: 1
+               jobStore:
+                  class: org.quartz.impl.jdbcjobstore.JobStoreTX
+                  driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+                  useProperties: true
+                  misfireThreshold: 60000
+                  tablePrefix: QRTZ_
+                  isClustered: true
+                  clusterCheckinInterval: 20000
+   
+---
+# Non Production Profile
+spring:
+   profiles: dev
+   
+---
+# Production Profile
+spring:
+   profiles: prod
+# Location of the logging configuration file.
+logging.config: classpath:logback.prod.xml
+
+---
+# Test Profile
+spring:
+   profiles: test
+   datasource.url: jdbc:h2:mem:AZ;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+   datasource.driverClassName: org.h2.Driver
+   datasource.username: sa
+   datasource.password: 
+   
+   liquibase.contexts: 
+
+--- 
+# Override all properties in this section from external properties file
+chp.auth.keys.rsk: wZgs0GXjuKGaC5ghNgOuCPB4BWAK+SipZz+XgUgz9Gs=
+chp.auth.keys.mssk: 9BtKkdLrQ2gOwpjLXGd9XPREjx9N1oqWA4KkqJjERaI=
+chp.auth.keys.rek: C3qYO49Oc39tR0dBGvgF0Q==
+chp.auth.keys.prk: E9xrFbri4t+3DPACUQt9ag==
+chp.auth.canonical.url: http://localhost:8090
+chp.core.canonical.url: http://localhost:8080
+chp.process.canonical.url: http://localhost:8070
+chp.s2si.canonical.url: http://localhost:8060

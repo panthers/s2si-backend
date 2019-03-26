@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+		
+		<!-- Proc Test 1 -->
+		<changeSet id="proc-test-1-h2" author="panther" dbms="h2">
+			<insert tableName="S2SI_PROC_MAIN">
+				<column name="PROCESSORID" type="${type.uuid}">08e3b71b-eb6c-4ae7-a18f-60feb56dde49</column>
+				<column name="SCENARIOID" type="BIGINT">0</column>
+				<column name="DESCRIPTION" type="NVARCHAR(500)" value="漢字"></column>
+				<column name="NEXT_PROCESSORID" type="${type.uuid}">b5b16da1-0141-43e0-b2cb-553ba6893106</column>
+				<column name="PROP_CLASS" type="VARCHAR(500)">com.cp.s2si.service.properties.http.StringHTTPInboundP</column>
+				<column name="PROC_CLASS" type="VARCHAR(500)">com.cp.s2si.service.processors.http.StringHTTPInbound</column>
+				<column name="PROP_JSON" type="${type.clob}">{"endpoint":"/string_http_inbound","requestMethods":["GET","POST"],"mediaTypes":["application/json"]}</column>
+				<column name="IS_ACTIVE" type="BOOLEAN" valueBoolean="true"></column>
+			</insert>
+			<insert tableName="S2SI_PROC_MAIN">
+				<column name="PROCESSORID" type="${type.uuid}">b5b16da1-0141-43e0-b2cb-553ba6893106</column>
+				<column name="SCENARIOID" type="BIGINT">0</column>
+				<column name="DESCRIPTION" type="NVARCHAR(500)" value="English"></column>
+				<column name="NEXT_PROCESSORID" type="${type.uuid}">e6894f15-040f-4362-a61b-a326f5c18e24</column>
+				<column name="PROP_CLASS" type="VARCHAR(500)">com.cp.s2si.service.properties.string.StringPrintP</column>
+				<column name="PROC_CLASS" type="VARCHAR(500)">com.cp.s2si.service.processors.string.StringPrint</column>
+				<column name="PROP_JSON" type="${type.clob}">{}</column>
+				<column name="IS_ACTIVE" type="BOOLEAN" valueBoolean="true"></column>
+			</insert>
+			<insert tableName="S2SI_PROC_MAIN">
+				<column name="PROCESSORID" type="${type.uuid}">e6894f15-040f-4362-a61b-a326f5c18e24</column>
+				<column name="SCENARIOID" type="BIGINT">0</column>
+				<column name="NEXT_PROCESSORID" type="${type.uuid}">66894f15-040f-4362-a61b-aa26f5c18e44</column>
+				<column name="PROP_CLASS" type="VARCHAR(500)">com.cp.s2si.service.properties.string.JsonToXmlP</column>
+				<column name="PROC_CLASS" type="VARCHAR(500)">com.cp.s2si.service.processors.string.JsonToXml</column>
+				<column name="PROP_JSON" type="${type.clob}">{}</column>
+				<column name="IS_ACTIVE" type="BOOLEAN" valueBoolean="true"></column>
+			</insert>
+			<insert tableName="S2SI_PROC_MAIN">
+				<column name="PROCESSORID" type="${type.uuid}">66894f15-040f-4362-a61b-aa26f5c18e44</column>
+				<column name="SCENARIOID" type="BIGINT">0</column>
+				<column name="NEXT_PROCESSORID" type="${type.uuid}">957c91fb-6999-4200-8d68-d28e88db0327</column>
+				<column name="PROP_CLASS" type="VARCHAR(500)">com.cp.s2si.service.properties.string.XPathPrioritizerP</column>
+				<column name="PROC_CLASS" type="VARCHAR(500)">com.cp.s2si.service.processors.string.XPathPrioritizer</column>
+				<column name="PROP_JSON" type="${type.clob}">{"xpathHigh":"/class/teacher", "xpathLow":""}</column>
+				<column name="IS_ACTIVE" type="BOOLEAN" valueBoolean="true"></column>
+			</insert>
+			<insert tableName="S2SI_PROC_MAIN">
+				<column name="PROCESSORID" type="${type.uuid}">957c91fb-6999-4200-8d68-d28e88db0327</column>
+				<column name="SCENARIOID" type="BIGINT">0</column>
+				<column name="PROP_CLASS" type="VARCHAR(500)">com.cp.s2si.service.properties.queue.QueueP</column>
+				<column name="PROC_CLASS" type="VARCHAR(500)">com.cp.s2si.service.processors.queue.Queue</column>
+				<column name="PROP_JSON" type="${type.clob}">{"queuename":"test_q1", "queueConsumerProcessorId":"ed8b663f-2a39-419e-903a-c7133cb619ad"}</column>
+				<column name="IS_ACTIVE" type="BOOLEAN" valueBoolean="true"></column>
+			</insert>
+			<insert tableName="S2SI_PROC_MAIN">
+				<column name="PROCESSORID" type="${type.uuid}">ed8b663f-2a39-419e-903a-c7133cb619ad</column>
+				<column name="SCENARIOID" type="BIGINT">0</column>
+				<column name="NEXT_PROCESSORID" type="${type.uuid}">c2ec684a-211a-11e8-b467-0ed5f89f718b</column>
+				<column name="PROP_CLASS" type="VARCHAR(500)">com.cp.s2si.service.properties.string.StringPrintP</column>
+				<column name="PROC_CLASS" type="VARCHAR(500)">com.cp.s2si.service.processors.string.StringPrint</column>
+				<column name="PROP_JSON" type="${type.clob}">{}</column>
+				<column name="IS_ACTIVE" type="BOOLEAN" valueBoolean="true"></column>
+			</insert>
+			<insert tableName="S2SI_PROC_MAIN">
+				<column name="PROCESSORID" type="${type.uuid}">c2ec684a-211a-11e8-b467-0ed5f89f718b</column>
+				<column name="SCENARIOID" type="BIGINT">0</column>
+				<column name="NEXT_PROCESSORID" type="${type.uuid}">e1dfd444-211a-11e8-b467-0ed5f89f718b</column>
+				<column name="PROP_CLASS" type="VARCHAR(500)">com.cp.s2si.service.properties.string.XslTransformP</column>
+				<column name="PROC_CLASS" type="VARCHAR(500)">com.cp.s2si.service.processors.string.XslTransform</column>
+				<column name="PROP_JSON" type="${type.clob}">{"xsl":"&lt;xsl:stylesheet version=\"1.0\" xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\"&gt;&lt;xsl:template match=\"teacher\"&gt;&lt;p&gt;&lt;u&gt;&lt;xsl:value-of select=\".\"/&gt;&lt;/u&gt;&lt;/p&gt;&lt;/xsl:template&gt;&lt;xsl:template match=\"student\"&gt;&lt;p&gt;&lt;b&gt;&lt;xsl:value-of select=\".\"/&gt;&lt;/b&gt;&lt;/p&gt;&lt;/xsl:template&gt;&lt;xsl:template match=\"/\"&gt;&lt;html&gt;&lt;body&gt;&lt;xsl:apply-templates/&gt;&lt;/body&gt;&lt;/html&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"}</column>
+				<column name="IS_ACTIVE" type="BOOLEAN" valueBoolean="true"></column>
+			</insert>
+			<insert tableName="S2SI_PROC_MAIN">
+				<column name="PROCESSORID" type="${type.uuid}">e1dfd444-211a-11e8-b467-0ed5f89f718b</column>
+				<column name="SCENARIOID" type="BIGINT">0</column>
+				<column name="PROP_CLASS" type="VARCHAR(500)">com.cp.s2si.service.properties.string.StringPrintP</column>
+				<column name="PROC_CLASS" type="VARCHAR(500)">com.cp.s2si.service.processors.string.StringPrint</column>
+				<column name="PROP_JSON" type="${type.clob}">{}</column>
+				<column name="IS_ACTIVE" type="BOOLEAN" valueBoolean="true"></column>
+			</insert>
+		</changeSet>
+		
+		<changeSet id="proc-test-1-oracle" author="panther" dbms="oracle">
+			<insert tableName="S2SI_PROC_MAIN">
+				<column name="PROCESSORID" type="${type.uuid}">08e3b71beb6c4ae7a18f60feb56dde49</column>
+				<column name="SCENARIOID" type="BIGINT">0</column>
+				<column name="DESCRIPTION" type="NVARCHAR(500)" value="漢字"></column>
+				<column name="NEXT_PROCESSORID" type="${type.uuid}">b5b16da1014143e0b2cb553ba6893106</column>
+				<column name="PROP_CLASS" type="VARCHAR(500)">com.cp.s2si.service.properties.http.StringHTTPInboundP</column>
+				<column name="PROC_CLASS" type="VARCHAR(500)">com.cp.s2si.service.processors.http.StringHTTPInbound</column>
+				<column name="PROP_JSON" type="${type.clob}">{"endpoint":"/string_http_inbound","requestMethods":["GET","POST"],"mediaTypes":["application/json"]}</column>
+				<column name="IS_ACTIVE" type="BOOLEAN" valueBoolean="true"></column>
+			</insert>
+			<insert tableName="S2SI_PROC_MAIN">
+				<column name="PROCESSORID" type="${type.uuid}">b5b16da1014143e0b2cb553ba6893106</column>
+				<column name="SCENARIOID" type="BIGINT">0</column>
+				<column name="DESCRIPTION" type="NVARCHAR(500)" value="English"></column>
+				<column name="NEXT_PROCESSORID" type="${type.uuid}">e6894f15040f4362a61ba326f5c18e24</column>
+				<column name="PROP_CLASS" type="VARCHAR(500)">com.cp.s2si.service.properties.string.StringPrintP</column>
+				<column name="PROC_CLASS" type="VARCHAR(500)">com.cp.s2si.service.processors.string.StringPrint</column>
+				<column name="PROP_JSON" type="${type.clob}">{}</column>
+				<column name="IS_ACTIVE" type="BOOLEAN" valueBoolean="true"></column>
+			</insert>
+			<insert tableName="S2SI_PROC_MAIN">
+				<column name="PROCESSORID" type="${type.uuid}">e6894f15040f4362a61ba326f5c18e24</column>
+				<column name="SCENARIOID" type="BIGINT">0</column>
+				<column name="NEXT_PROCESSORID" type="${type.uuid}">66894f15040f4362a61baa26f5c18e44</column>
+				<column name="PROP_CLASS" type="VARCHAR(500)">com.cp.s2si.service.properties.string.JsonToXmlP</column>
+				<column name="PROC_CLASS" type="VARCHAR(500)">com.cp.s2si.service.processors.string.JsonToXml</column>
+				<column name="PROP_JSON" type="${type.clob}">{}</column>
+				<column name="IS_ACTIVE" type="BOOLEAN" valueBoolean="true"></column>
+			</insert>
+			<insert tableName="S2SI_PROC_MAIN">
+				<column name="PROCESSORID" type="${type.uuid}">66894f15040f4362a61baa26f5c18e44</column>
+				<column name="SCENARIOID" type="BIGINT">0</column>
+				<column name="NEXT_PROCESSORID" type="${type.uuid}">957c91fb699942008d68d28e88db0327</column>
+				<column name="PROP_CLASS" type="VARCHAR(500)">com.cp.s2si.service.properties.string.XPathPrioritizerP</column>
+				<column name="PROC_CLASS" type="VARCHAR(500)">com.cp.s2si.service.processors.string.XPathPrioritizer</column>
+				<column name="PROP_JSON" type="${type.clob}">{"xpathHigh":"/class/teacher", "xpathLow":""}</column>
+				<column name="IS_ACTIVE" type="BOOLEAN" valueBoolean="true"></column>
+			</insert>
+			<insert tableName="S2SI_PROC_MAIN">
+				<column name="PROCESSORID" type="${type.uuid}">957c91fb699942008d68d28e88db0327</column>
+				<column name="SCENARIOID" type="BIGINT">0</column>
+				<column name="PROP_CLASS" type="VARCHAR(500)">com.cp.s2si.service.properties.queue.QueueP</column>
+				<column name="PROC_CLASS" type="VARCHAR(500)">com.cp.s2si.service.processors.queue.Queue</column>
+				<column name="PROP_JSON" type="${type.clob}">{"queuename":"test_q1", "queueConsumerProcessorId":"ed8b663f-2a39-419e-903a-c7133cb619ad"}</column>
+				<column name="IS_ACTIVE" type="BOOLEAN" valueBoolean="true"></column>
+			</insert>
+			<insert tableName="S2SI_PROC_MAIN">
+				<column name="PROCESSORID" type="${type.uuid}">ed8b663f2a39419e903ac7133cb619ad</column>
+				<column name="SCENARIOID" type="BIGINT">0</column>
+				<column name="NEXT_PROCESSORID" type="${type.uuid}">c2ec684a211a11e8b4670ed5f89f718b</column>
+				<column name="PROP_CLASS" type="VARCHAR(500)">com.cp.s2si.service.properties.string.StringPrintP</column>
+				<column name="PROC_CLASS" type="VARCHAR(500)">com.cp.s2si.service.processors.string.StringPrint</column>
+				<column name="PROP_JSON" type="${type.clob}">{}</column>
+				<column name="IS_ACTIVE" type="BOOLEAN" valueBoolean="true"></column>
+			</insert>
+			<insert tableName="S2SI_PROC_MAIN">
+				<column name="PROCESSORID" type="${type.uuid}">c2ec684a211a11e8b4670ed5f89f718b</column>
+				<column name="SCENARIOID" type="BIGINT">0</column>
+				<column name="NEXT_PROCESSORID" type="${type.uuid}">e1dfd444211a11e8b4670ed5f89f718b</column>
+				<column name="PROP_CLASS" type="VARCHAR(500)">com.cp.s2si.service.properties.string.XslTransformP</column>
+				<column name="PROC_CLASS" type="VARCHAR(500)">com.cp.s2si.service.processors.string.XslTransform</column>
+				<column name="PROP_JSON" type="${type.clob}">{"xsl":"&lt;xsl:stylesheet version=\"1.0\" xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\"&gt;&lt;xsl:template match=\"teacher\"&gt;&lt;p&gt;&lt;u&gt;&lt;xsl:value-of select=\".\"/&gt;&lt;/u&gt;&lt;/p&gt;&lt;/xsl:template&gt;&lt;xsl:template match=\"student\"&gt;&lt;p&gt;&lt;b&gt;&lt;xsl:value-of select=\".\"/&gt;&lt;/b&gt;&lt;/p&gt;&lt;/xsl:template&gt;&lt;xsl:template match=\"/\"&gt;&lt;html&gt;&lt;body&gt;&lt;xsl:apply-templates/&gt;&lt;/body&gt;&lt;/html&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"}</column>
+				<column name="IS_ACTIVE" type="BOOLEAN" valueBoolean="true"></column>
+			</insert>
+			<insert tableName="S2SI_PROC_MAIN">
+				<column name="PROCESSORID" type="${type.uuid}">e1dfd444211a11e8b4670ed5f89f718b</column>
+				<column name="SCENARIOID" type="BIGINT">0</column>
+				<column name="PROP_CLASS" type="VARCHAR(500)">com.cp.s2si.service.properties.string.StringPrintP</column>
+				<column name="PROC_CLASS" type="VARCHAR(500)">com.cp.s2si.service.processors.string.StringPrint</column>
+				<column name="PROP_JSON" type="${type.clob}">{}</column>
+				<column name="IS_ACTIVE" type="BOOLEAN" valueBoolean="true"></column>
+			</insert>
+		</changeSet>
+		
+		<changeSet id="proc-test-1-mssql" author="panther" dbms="mssql">
+			<insert tableName="S2SI_PROC_MAIN">
+				<column name="PROCESSORID" type="${type.uuid}" valueNumeric="convert(binary(16), 0x08e3b71beb6c4ae7a18f60feb56dde49)"></column>
+				<column name="SCENARIOID" type="BIGINT">0</column>
+				<column name="DESCRIPTION" type="NVARCHAR(500)" value="漢字"></column>
+				<column name="NEXT_PROCESSORID" type="${type.uuid}" valueNumeric="convert(binary(16), 0xb5b16da1014143e0b2cb553ba6893106)"></column>
+				<column name="PROP_CLASS" type="VARCHAR(500)">com.cp.s2si.service.properties.http.StringHTTPInboundP</column>
+				<column name="PROC_CLASS" type="VARCHAR(500)">com.cp.s2si.service.processors.http.StringHTTPInbound</column>
+				<column name="PROP_JSON" type="${type.clob}">{"endpoint":"/string_http_inbound","requestMethods":["GET","POST"],"mediaTypes":["application/json"]}</column>
+				<column name="IS_ACTIVE" type="BOOLEAN" valueBoolean="true"></column>
+			</insert>
+			<insert tableName="S2SI_PROC_MAIN">
+				<column name="PROCESSORID" type="${type.uuid}" valueNumeric="convert(binary(16), 0xb5b16da1014143e0b2cb553ba6893106)"></column>
+				<column name="SCENARIOID" type="BIGINT">0</column>
+				<column name="DESCRIPTION" type="NVARCHAR(500)" value="English"></column>
+				<column name="NEXT_PROCESSORID" type="${type.uuid}" valueNumeric="convert(binary(16), 0xe6894f15040f4362a61ba326f5c18e24)"></column>
+				<column name="PROP_CLASS" type="VARCHAR(500)">com.cp.s2si.service.properties.string.StringPrintP</column>
+				<column name="PROC_CLASS" type="VARCHAR(500)">com.cp.s2si.service.processors.string.StringPrint</column>
+				<column name="PROP_JSON" type="${type.clob}">{}</column>
+				<column name="IS_ACTIVE" type="BOOLEAN" valueBoolean="true"></column>
+			</insert>
+			<insert tableName="S2SI_PROC_MAIN">
+				<column name="PROCESSORID" type="${type.uuid}" valueNumeric="convert(binary(16), 0xe6894f15040f4362a61ba326f5c18e24)"></column>
+				<column name="SCENARIOID" type="BIGINT">0</column>
+				<column name="NEXT_PROCESSORID" type="${type.uuid}" valueNumeric="convert(binary(16), 0x66894f15040f4362a61baa26f5c18e44)"></column>
+				<column name="PROP_CLASS" type="VARCHAR(500)">com.cp.s2si.service.properties.string.JsonToXmlP</column>
+				<column name="PROC_CLASS" type="VARCHAR(500)">com.cp.s2si.service.processors.string.JsonToXml</column>
+				<column name="PROP_JSON" type="${type.clob}">{}</column>
+				<column name="IS_ACTIVE" type="BOOLEAN" valueBoolean="true"></column>
+			</insert>
+			<insert tableName="S2SI_PROC_MAIN">
+				<column name="PROCESSORID" type="${type.uuid}" valueNumeric="convert(binary(16), 0x66894f15040f4362a61baa26f5c18e44)"></column>
+				<column name="SCENARIOID" type="BIGINT">0</column>
+				<column name="NEXT_PROCESSORID" type="${type.uuid}" valueNumeric="convert(binary(16), 0x957c91fb699942008d68d28e88db0327)"></column>
+				<column name="PROP_CLASS" type="VARCHAR(500)">com.cp.s2si.service.properties.string.XPathPrioritizerP</column>
+				<column name="PROC_CLASS" type="VARCHAR(500)">com.cp.s2si.service.processors.string.XPathPrioritizer</column>
+				<column name="PROP_JSON" type="${type.clob}">{"xpathHigh":"/class/teacher", "xpathLow":""}</column>
+				<column name="IS_ACTIVE" type="BOOLEAN" valueBoolean="true"></column>
+			</insert>
+			<insert tableName="S2SI_PROC_MAIN">
+				<column name="PROCESSORID" type="${type.uuid}" valueNumeric="convert(binary(16), 0x957c91fb699942008d68d28e88db0327)"></column>
+				<column name="SCENARIOID" type="BIGINT">0</column>
+				<column name="PROP_CLASS" type="VARCHAR(500)">com.cp.s2si.service.properties.queue.QueueP</column>
+				<column name="PROC_CLASS" type="VARCHAR(500)">com.cp.s2si.service.processors.queue.Queue</column>
+				<column name="PROP_JSON" type="${type.clob}">{"queuename":"test_q1", "queueConsumerProcessorId":"ed8b663f-2a39-419e-903a-c7133cb619ad"}</column>
+				<column name="IS_ACTIVE" type="BOOLEAN" valueBoolean="true"></column>
+			</insert>
+			<insert tableName="S2SI_PROC_MAIN">
+				<column name="PROCESSORID" type="${type.uuid}" valueNumeric="convert(binary(16), 0xed8b663f2a39419e903ac7133cb619ad)"></column>
+				<column name="SCENARIOID" type="BIGINT">0</column>
+				<column name="NEXT_PROCESSORID" type="${type.uuid}" valueNumeric="convert(binary(16), 0xc2ec684a211a11e8b4670ed5f89f718b)"></column>
+				<column name="PROP_CLASS" type="VARCHAR(500)">com.cp.s2si.service.properties.string.StringPrintP</column>
+				<column name="PROC_CLASS" type="VARCHAR(500)">com.cp.s2si.service.processors.string.StringPrint</column>
+				<column name="PROP_JSON" type="${type.clob}">{}</column>
+				<column name="IS_ACTIVE" type="BOOLEAN" valueBoolean="true"></column>
+			</insert>
+			<insert tableName="S2SI_PROC_MAIN">
+				<column name="PROCESSORID" type="${type.uuid}" valueNumeric="convert(binary(16), 0xc2ec684a211a11e8b4670ed5f89f718b)"></column>
+				<column name="SCENARIOID" type="BIGINT">0</column>
+				<column name="NEXT_PROCESSORID" type="${type.uuid}" valueNumeric="convert(binary(16), 0xe1dfd444211a11e8b4670ed5f89f718b)"></column>
+				<column name="PROP_CLASS" type="VARCHAR(500)">com.cp.s2si.service.properties.string.XslTransformP</column>
+				<column name="PROC_CLASS" type="VARCHAR(500)">com.cp.s2si.service.processors.string.XslTransform</column>
+				<column name="PROP_JSON" type="${type.clob}">{"xsl":"&lt;xsl:stylesheet version=\"1.0\" xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\"&gt;&lt;xsl:template match=\"teacher\"&gt;&lt;p&gt;&lt;u&gt;&lt;xsl:value-of select=\".\"/&gt;&lt;/u&gt;&lt;/p&gt;&lt;/xsl:template&gt;&lt;xsl:template match=\"student\"&gt;&lt;p&gt;&lt;b&gt;&lt;xsl:value-of select=\".\"/&gt;&lt;/b&gt;&lt;/p&gt;&lt;/xsl:template&gt;&lt;xsl:template match=\"/\"&gt;&lt;html&gt;&lt;body&gt;&lt;xsl:apply-templates/&gt;&lt;/body&gt;&lt;/html&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"}</column>
+				<column name="IS_ACTIVE" type="BOOLEAN" valueBoolean="true"></column>
+			</insert>
+			<insert tableName="S2SI_PROC_MAIN">
+				<column name="PROCESSORID" type="${type.uuid}" valueNumeric="convert(binary(16), 0xe1dfd444211a11e8b4670ed5f89f718b)"></column>
+				<column name="SCENARIOID" type="BIGINT">0</column>
+				<column name="PROP_CLASS" type="VARCHAR(500)">com.cp.s2si.service.properties.string.StringPrintP</column>
+				<column name="PROC_CLASS" type="VARCHAR(500)">com.cp.s2si.service.processors.string.StringPrint</column>
+				<column name="PROP_JSON" type="${type.clob}">{}</column>
+				<column name="IS_ACTIVE" type="BOOLEAN" valueBoolean="true"></column>
+			</insert>
+		</changeSet>
+		
+		<changeSet id="proc-test-1-mysql" author="panther" dbms="mysql">
+			<insert tableName="S2SI_PROC_MAIN">
+				<column name="PROCESSORID" type="${type.uuid}" valueNumeric="UNHEX(REPLACE('08e3b71b-eb6c-4ae7-a18f-60feb56dde49', '-',''))"></column>
+				<column name="SCENARIOID" type="BIGINT">0</column>
+				<column name="DESCRIPTION" type="NVARCHAR(500)" value="漢字"></column>
+				<column name="NEXT_PROCESSORID" type="${type.uuid}" valueNumeric="UNHEX(REPLACE('b5b16da1-0141-43e0-b2cb-553ba6893106', '-',''))"></column>
+				<column name="PROP_CLASS" type="VARCHAR(500)">com.cp.s2si.service.properties.http.StringHTTPInboundP</column>
+				<column name="PROC_CLASS" type="VARCHAR(500)">com.cp.s2si.service.processors.http.StringHTTPInbound</column>
+				<column name="PROP_JSON" type="${type.clob}">{"endpoint":"/string_http_inbound","requestMethods":["GET","POST"],"mediaTypes":["application/json"]}</column>
+				<column name="IS_ACTIVE" type="BOOLEAN" valueBoolean="true"></column>
+			</insert>
+			<insert tableName="S2SI_PROC_MAIN">
+				<column name="PROCESSORID" type="${type.uuid}" valueNumeric="UNHEX(REPLACE('b5b16da1-0141-43e0-b2cb-553ba6893106', '-',''))"></column>
+				<column name="SCENARIOID" type="BIGINT">0</column>
+				<column name="DESCRIPTION" type="NVARCHAR(500)" value="English"></column>
+				<column name="NEXT_PROCESSORID" type="${type.uuid}" valueNumeric="UNHEX(REPLACE('e6894f15-040f-4362-a61b-a326f5c18e24', '-',''))"></column>
+				<column name="PROP_CLASS" type="VARCHAR(500)">com.cp.s2si.service.properties.string.StringPrintP</column>
+				<column name="PROC_CLASS" type="VARCHAR(500)">com.cp.s2si.service.processors.string.StringPrint</column>
+				<column name="PROP_JSON" type="${type.clob}">{}</column>
+				<column name="IS_ACTIVE" type="BOOLEAN" valueBoolean="true"></column>
+			</insert>
+			<insert tableName="S2SI_PROC_MAIN">
+				<column name="PROCESSORID" type="${type.uuid}" valueNumeric="UNHEX(REPLACE('e6894f15-040f-4362-a61b-a326f5c18e24', '-',''))"></column>
+				<column name="SCENARIOID" type="BIGINT">0</column>
+				<column name="NEXT_PROCESSORID" type="${type.uuid}" valueNumeric="UNHEX(REPLACE('66894f15-040f-4362-a61b-aa26f5c18e44', '-',''))"></column>
+				<column name="PROP_CLASS" type="VARCHAR(500)">com.cp.s2si.service.properties.string.JsonToXmlP</column>
+				<column name="PROC_CLASS" type="VARCHAR(500)">com.cp.s2si.service.processors.string.JsonToXml</column>
+				<column name="PROP_JSON" type="${type.clob}">{}</column>
+				<column name="IS_ACTIVE" type="BOOLEAN" valueBoolean="true"></column>
+			</insert>
+			<insert tableName="S2SI_PROC_MAIN">
+				<column name="PROCESSORID" type="${type.uuid}" valueNumeric="UNHEX(REPLACE('66894f15-040f-4362-a61b-aa26f5c18e44', '-',''))"></column>
+				<column name="SCENARIOID" type="BIGINT">0</column>
+				<column name="NEXT_PROCESSORID" type="${type.uuid}" valueNumeric="UNHEX(REPLACE('957c91fb-6999-4200-8d68-d28e88db0327', '-',''))"></column>
+				<column name="PROP_CLASS" type="VARCHAR(500)">com.cp.s2si.service.properties.string.XPathPrioritizerP</column>
+				<column name="PROC_CLASS" type="VARCHAR(500)">com.cp.s2si.service.processors.string.XPathPrioritizer</column>
+				<column name="PROP_JSON" type="${type.clob}">{"xpathHigh":"/class/teacher", "xpathLow":""}</column>
+				<column name="IS_ACTIVE" type="BOOLEAN" valueBoolean="true"></column>
+			</insert>
+			<insert tableName="S2SI_PROC_MAIN">
+				<column name="PROCESSORID" type="${type.uuid}" valueNumeric="UNHEX(REPLACE('957c91fb-6999-4200-8d68-d28e88db0327', '-',''))"></column>
+				<column name="SCENARIOID" type="BIGINT">0</column>
+				<column name="PROP_CLASS" type="VARCHAR(500)">com.cp.s2si.service.properties.queue.QueueP</column>
+				<column name="PROC_CLASS" type="VARCHAR(500)">com.cp.s2si.service.processors.queue.Queue</column>
+				<column name="PROP_JSON" type="${type.clob}">{"queuename":"test_q1", "queueConsumerProcessorId":"ed8b663f-2a39-419e-903a-c7133cb619ad"}</column>
+				<column name="IS_ACTIVE" type="BOOLEAN" valueBoolean="true"></column>
+			</insert>
+			<insert tableName="S2SI_PROC_MAIN">
+				<column name="PROCESSORID" type="${type.uuid}" valueNumeric="UNHEX(REPLACE('ed8b663f-2a39-419e-903a-c7133cb619ad', '-',''))"></column>
+				<column name="SCENARIOID" type="BIGINT">0</column>
+				<column name="NEXT_PROCESSORID" type="${type.uuid}" valueNumeric="UNHEX(REPLACE('c2ec684a-211a-11e8-b467-0ed5f89f718b', '-',''))"></column>
+				<column name="PROP_CLASS" type="VARCHAR(500)">com.cp.s2si.service.properties.string.StringPrintP</column>
+				<column name="PROC_CLASS" type="VARCHAR(500)">com.cp.s2si.service.processors.string.StringPrint</column>
+				<column name="PROP_JSON" type="${type.clob}">{}</column>
+				<column name="IS_ACTIVE" type="BOOLEAN" valueBoolean="true"></column>
+			</insert>
+			<insert tableName="S2SI_PROC_MAIN">
+				<column name="PROCESSORID" type="${type.uuid}" valueNumeric="UNHEX(REPLACE('c2ec684a-211a-11e8-b467-0ed5f89f718b', '-',''))"></column>
+				<column name="SCENARIOID" type="BIGINT">0</column>
+				<column name="NEXT_PROCESSORID" type="${type.uuid}" valueNumeric="UNHEX(REPLACE('e1dfd444-211a-11e8-b467-0ed5f89f718b', '-',''))"></column>
+				<column name="PROP_CLASS" type="VARCHAR(500)">com.cp.s2si.service.properties.string.XslTransformP</column>
+				<column name="PROC_CLASS" type="VARCHAR(500)">com.cp.s2si.service.processors.string.XslTransform</column>
+				<column name="PROP_JSON" type="${type.clob}">{"xsl":"&lt;xsl:stylesheet version=\"1.0\" xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\"&gt;&lt;xsl:template match=\"teacher\"&gt;&lt;p&gt;&lt;u&gt;&lt;xsl:value-of select=\".\"/&gt;&lt;/u&gt;&lt;/p&gt;&lt;/xsl:template&gt;&lt;xsl:template match=\"student\"&gt;&lt;p&gt;&lt;b&gt;&lt;xsl:value-of select=\".\"/&gt;&lt;/b&gt;&lt;/p&gt;&lt;/xsl:template&gt;&lt;xsl:template match=\"/\"&gt;&lt;html&gt;&lt;body&gt;&lt;xsl:apply-templates/&gt;&lt;/body&gt;&lt;/html&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;"}</column>
+				<column name="IS_ACTIVE" type="BOOLEAN" valueBoolean="true"></column>
+			</insert>
+			<insert tableName="S2SI_PROC_MAIN">
+				<column name="PROCESSORID" type="${type.uuid}" valueNumeric="UNHEX(REPLACE('e1dfd444-211a-11e8-b467-0ed5f89f718b', '-',''))"></column>
+				<column name="SCENARIOID" type="BIGINT">0</column>
+				<column name="PROP_CLASS" type="VARCHAR(500)">com.cp.s2si.service.properties.string.StringPrintP</column>
+				<column name="PROC_CLASS" type="VARCHAR(500)">com.cp.s2si.service.processors.string.StringPrint</column>
+				<column name="PROP_JSON" type="${type.clob}">{}</column>
+				<column name="IS_ACTIVE" type="BOOLEAN" valueBoolean="true"></column>
+			</insert>
+		</changeSet>
+		
+		<!-- Proc Test 2 -->
+		<changeSet id="proc-test-2-h2" author="panther" dbms="h2">
+			<insert tableName="S2SI_PROC_MAIN">
+				<column name="PROCESSORID" type="${type.uuid}">11e3b71b-eb6c-4ae7-a18f-60feb56dde22</column>
+				<column name="SCENARIOID" type="BIGINT">0</column>
+				<column name="NEXT_PROCESSORID" type="${type.uuid}">22226da1-0141-43e0-b2cb-553ba6891111</column>
+				<column name="PROP_CLASS" type="VARCHAR(500)">com.cp.s2si.service.properties.polling.PathFilePollingP</column>
+				<column name="PROC_CLASS" type="VARCHAR(500)">com.cp.s2si.service.processors.polling.PathFilePolling</column>
+				<column name="PROP_JSON" type="${type.clob}">{"cronExpr":"0/5 * * * * ? *","props":{"pathToPoll":"/Users/panther/1/poll","checkForAnyFileInFolderPath":true,"fileNameToCheck":"poll.now","fileNamePrefixToPickup":"WO","fileNameSuffixToPickup":".xml","fileNameRegexToPickup":"WO-\\d{5}.xml","deleteAfterPickup":false,"moveAfterPickup":true,"moveToPathOnSuccess":"success","moveToPathOnFailure":"error","renameFile":true,"renamePrefix":"PROCESSED_","renameNameSuffix":"","renameExtensionSuffix":"","lockFilePreffix":".","lockFileSuffix":".lock","sizeCheckIntervalInMilliseconds":2000}}</column>
+				<column name="IS_ACTIVE" type="BOOLEAN" valueBoolean="true"></column>
+			</insert>
+			<insert tableName="S2SI_PROC_MAIN">
+				<column name="PROCESSORID" type="${type.uuid}">22226da1-0141-43e0-b2cb-553ba6891111</column>
+				<column name="SCENARIOID" type="BIGINT">0</column>
+				<column name="NEXT_PROCESSORID" type="${type.uuid}">11b16da1-0141-43e0-b2cb-553ba6893122</column>
+				<column name="RETURN_PROCESSORID" type="${type.uuid}">11116da1-0141-43e0-b2cb-553ba6892222</column>
+				<column name="PROP_CLASS" type="VARCHAR(500)">com.cp.s2si.service.properties.stream.StreamToStringP</column>
+				<column name="PROC_CLASS" type="VARCHAR(500)">com.cp.s2si.service.processors.stream.StreamToString</column>
+				<column name="PROP_JSON" type="${type.clob}">{}</column>
+				<column name="IS_ACTIVE" type="BOOLEAN" valueBoolean="true"></column>
+			</insert>
+			<insert tableName="S2SI_PROC_MAIN">
+				<column name="PROCESSORID" type="${type.uuid}">11b16da1-0141-43e0-b2cb-553ba6893122</column>
+				<column name="SCENARIOID" type="BIGINT">0</column>
+				<column name="PROP_CLASS" type="VARCHAR(500)">com.cp.s2si.service.properties.string.StringPrintP</column>
+				<column name="PROC_CLASS" type="VARCHAR(500)">com.cp.s2si.service.processors.string.StringPrint</column>
+				<column name="PROP_JSON" type="${type.clob}">{}</column>
+				<column name="IS_ACTIVE" type="BOOLEAN" valueBoolean="true"></column>
+			</insert>
+			<insert tableName="S2SI_PROC_MAIN">
+				<column name="PROCESSORID" type="${type.uuid}">11116da1-0141-43e0-b2cb-553ba6892222</column>
+				<column name="SCENARIOID" type="BIGINT">0</column>
+				<column name="PROP_CLASS" type="VARCHAR(500)">com.cp.s2si.service.properties.string.XPathToBooleanP</column>
+				<column name="PROC_CLASS" type="VARCHAR(500)">com.cp.s2si.service.processors.string.XPathToBoolean</column>
+				<column name="PROP_JSON" type="${type.clob}">{"xpathTrue":"/note/to[text() = 'Tove']", "xpathFalse":"", "defaultBool":"false"}</column>
+				<column name="IS_ACTIVE" type="BOOLEAN" valueBoolean="true"></column>
+			</insert>
+		</changeSet>
+		
+		<changeSet id="proc-test-2-oracle" author="panther" dbms="oracle">
+			<insert tableName="S2SI_PROC_MAIN">
+				<column name="PROCESSORID" type="${type.uuid}">11e3b71beb6c4ae7a18f60feb56dde22</column>
+				<column name="SCENARIOID" type="BIGINT">0</column>
+				<column name="NEXT_PROCESSORID" type="${type.uuid}">22226da1014143e0b2cb553ba6891111</column>
+				<column name="PROP_CLASS" type="VARCHAR(500)">com.cp.s2si.service.properties.polling.PathFilePollingP</column>
+				<column name="PROC_CLASS" type="VARCHAR(500)">com.cp.s2si.service.processors.polling.PathFilePolling</column>
+				<column name="PROP_JSON" type="${type.clob}">{"cronExpr":"0/5 * * * * ? *","props":{"pathToPoll":"/Users/panther/1/poll","checkForAnyFileInFolderPath":true,"fileNameToCheck":"poll.now","fileNamePrefixToPickup":"WO","fileNameSuffixToPickup":".xml","fileNameRegexToPickup":"WO-\\d{5}.xml","deleteAfterPickup":false,"moveAfterPickup":true,"moveToPathOnSuccess":"success","moveToPathOnFailure":"error","renameFile":true,"renamePrefix":"PROCESSED_","renameNameSuffix":"","renameExtensionSuffix":"","lockFilePreffix":".","lockFileSuffix":".lock","sizeCheckIntervalInMilliseconds":2000}}</column>
+				<column name="IS_ACTIVE" type="BOOLEAN" valueBoolean="true"></column>
+			</insert>
+			<insert tableName="S2SI_PROC_MAIN">
+				<column name="PROCESSORID" type="${type.uuid}">22226da1014143e0b2cb553ba6891111</column>
+				<column name="SCENARIOID" type="BIGINT">0</column>
+				<column name="NEXT_PROCESSORID" type="${type.uuid}">11b16da1014143e0b2cb553ba6893122</column>
+				<column name="RETURN_PROCESSORID" type="${type.uuid}">11116da1014143e0b2cb553ba6892222</column>
+				<column name="PROP_CLASS" type="VARCHAR(500)">com.cp.s2si.service.properties.stream.StreamToStringP</column>
+				<column name="PROC_CLASS" type="VARCHAR(500)">com.cp.s2si.service.processors.stream.StreamToString</column>
+				<column name="PROP_JSON" type="${type.clob}">{}</column>
+				<column name="IS_ACTIVE" type="BOOLEAN" valueBoolean="true"></column>
+			</insert>
+			<insert tableName="S2SI_PROC_MAIN">
+				<column name="PROCESSORID" type="${type.uuid}">11b16da1014143e0b2cb553ba6893122</column>
+				<column name="SCENARIOID" type="BIGINT">0</column>
+				<column name="PROP_CLASS" type="VARCHAR(500)">com.cp.s2si.service.properties.string.StringPrintP</column>
+				<column name="PROC_CLASS" type="VARCHAR(500)">com.cp.s2si.service.processors.string.StringPrint</column>
+				<column name="PROP_JSON" type="${type.clob}">{}</column>
+				<column name="IS_ACTIVE" type="BOOLEAN" valueBoolean="true"></column>
+			</insert>
+			<insert tableName="S2SI_PROC_MAIN">
+				<column name="PROCESSORID" type="${type.uuid}">11116da1014143e0b2cb553ba6892222</column>
+				<column name="SCENARIOID" type="BIGINT">0</column>
+				<column name="PROP_CLASS" type="VARCHAR(500)">com.cp.s2si.service.properties.string.XPathToBooleanP</column>
+				<column name="PROC_CLASS" type="VARCHAR(500)">com.cp.s2si.service.processors.string.XPathToBoolean</column>
+				<column name="PROP_JSON" type="${type.clob}">{"xpathTrue":"/note/to[text() = 'Tove']", "xpathFalse":"", "defaultBool":"false"}</column>
+				<column name="IS_ACTIVE" type="BOOLEAN" valueBoolean="true"></column>
+			</insert>
+		</changeSet>
+		
+		<changeSet id="proc-test-2-mssql" author="panther" dbms="mssql">
+			<insert tableName="S2SI_PROC_MAIN">
+				<column name="PROCESSORID" type="${type.uuid}" valueNumeric="convert(binary(16), 0x11e3b71beb6c4ae7a18f60feb56dde22)"></column>
+				<column name="SCENARIOID" type="BIGINT">0</column>
+				<column name="NEXT_PROCESSORID" type="${type.uuid}" valueNumeric="convert(binary(16), 0x22226da1014143e0b2cb553ba6891111)"></column>
+				<column name="PROP_CLASS" type="VARCHAR(500)">com.cp.s2si.service.properties.polling.PathFilePollingP</column>
+				<column name="PROC_CLASS" type="VARCHAR(500)">com.cp.s2si.service.processors.polling.PathFilePolling</column>
+				<column name="PROP_JSON" type="${type.clob}">{"cronExpr":"0/5 * * * * ? *","props":{"pathToPoll":"/Users/panther/1/poll","checkForAnyFileInFolderPath":true,"fileNameToCheck":"poll.now","fileNamePrefixToPickup":"WO","fileNameSuffixToPickup":".xml","fileNameRegexToPickup":"WO-\\d{5}.xml","deleteAfterPickup":false,"moveAfterPickup":true,"moveToPathOnSuccess":"success","moveToPathOnFailure":"error","renameFile":true,"renamePrefix":"PROCESSED_","renameNameSuffix":"","renameExtensionSuffix":"","lockFilePreffix":".","lockFileSuffix":".lock","sizeCheckIntervalInMilliseconds":2000}}</column>
+				<column name="IS_ACTIVE" type="BOOLEAN" valueBoolean="true"></column>
+			</insert>
+			<insert tableName="S2SI_PROC_MAIN">
+				<column name="PROCESSORID" type="${type.uuid}" valueNumeric="convert(binary(16), 0x22226da1014143e0b2cb553ba6891111)"></column>
+				<column name="SCENARIOID" type="BIGINT">0</column>
+				<column name="NEXT_PROCESSORID" type="${type.uuid}" valueNumeric="convert(binary(16), 0x11b16da1014143e0b2cb553ba6893122)"></column>
+				<column name="RETURN_PROCESSORID" type="${type.uuid}" valueNumeric="convert(binary(16), 0x11116da1014143e0b2cb553ba6892222)"></column>
+				<column name="PROP_CLASS" type="VARCHAR(500)">com.cp.s2si.service.properties.stream.StreamToStringP</column>
+				<column name="PROC_CLASS" type="VARCHAR(500)">com.cp.s2si.service.processors.stream.StreamToString</column>
+				<column name="PROP_JSON" type="${type.clob}">{}</column>
+				<column name="IS_ACTIVE" type="BOOLEAN" valueBoolean="true"></column>
+			</insert>
+			<insert tableName="S2SI_PROC_MAIN">
+				<column name="PROCESSORID" type="${type.uuid}" valueNumeric="convert(binary(16), 0x11b16da1014143e0b2cb553ba6893122)"></column>
+				<column name="SCENARIOID" type="BIGINT">0</column>
+				<column name="PROP_CLASS" type="VARCHAR(500)">com.cp.s2si.service.properties.string.StringPrintP</column>
+				<column name="PROC_CLASS" type="VARCHAR(500)">com.cp.s2si.service.processors.string.StringPrint</column>
+				<column name="PROP_JSON" type="${type.clob}">{}</column>
+				<column name="IS_ACTIVE" type="BOOLEAN" valueBoolean="true"></column>
+			</insert>
+			<insert tableName="S2SI_PROC_MAIN">
+				<column name="PROCESSORID" type="${type.uuid}" valueNumeric="convert(binary(16), 0x11116da1014143e0b2cb553ba6892222)"></column>
+				<column name="SCENARIOID" type="BIGINT">0</column>
+				<column name="PROP_CLASS" type="VARCHAR(500)">com.cp.s2si.service.properties.string.XPathToBooleanP</column>
+				<column name="PROC_CLASS" type="VARCHAR(500)">com.cp.s2si.service.processors.string.XPathToBoolean</column>
+				<column name="PROP_JSON" type="${type.clob}">{"xpathTrue":"/note/to[text() = 'Tove']", "xpathFalse":"", "defaultBool":"false"}</column>
+				<column name="IS_ACTIVE" type="BOOLEAN" valueBoolean="true"></column>
+			</insert>
+		</changeSet>
+		
+		<changeSet id="proc-test-2-mysql" author="panther" dbms="mysql">
+			<insert tableName="S2SI_PROC_MAIN">
+				<column name="PROCESSORID" type="${type.uuid}" valueNumeric="UNHEX(REPLACE('11e3b71b-eb6c-4ae7-a18f-60feb56dde22', '-',''))"></column>
+				<column name="SCENARIOID" type="BIGINT">0</column>
+				<column name="NEXT_PROCESSORID" type="${type.uuid}" valueNumeric="UNHEX(REPLACE('22226da1-0141-43e0-b2cb-553ba6891111', '-',''))"></column>
+				<column name="PROP_CLASS" type="VARCHAR(500)">com.cp.s2si.service.properties.polling.PathFilePollingP</column>
+				<column name="PROC_CLASS" type="VARCHAR(500)">com.cp.s2si.service.processors.polling.PathFilePolling</column>
+				<column name="PROP_JSON" type="${type.clob}">{"cronExpr":"0/5 * * * * ? *","props":{"pathToPoll":"/Users/panther/1/poll","checkForAnyFileInFolderPath":true,"fileNameToCheck":"poll.now","fileNamePrefixToPickup":"WO","fileNameSuffixToPickup":".xml","fileNameRegexToPickup":"WO-\\d{5}.xml","deleteAfterPickup":false,"moveAfterPickup":true,"moveToPathOnSuccess":"success","moveToPathOnFailure":"error","renameFile":true,"renamePrefix":"PROCESSED_","renameNameSuffix":"","renameExtensionSuffix":"","lockFilePreffix":".","lockFileSuffix":".lock","sizeCheckIntervalInMilliseconds":2000}}</column>
+				<column name="IS_ACTIVE" type="BOOLEAN" valueBoolean="true"></column>
+			</insert>
+			<insert tableName="S2SI_PROC_MAIN">
+				<column name="PROCESSORID" type="${type.uuid}" valueNumeric="UNHEX(REPLACE('22226da1-0141-43e0-b2cb-553ba6891111', '-',''))"></column>
+				<column name="SCENARIOID" type="BIGINT">0</column>
+				<column name="NEXT_PROCESSORID" type="${type.uuid}" valueNumeric="UNHEX(REPLACE('11b16da1-0141-43e0-b2cb-553ba6893122', '-',''))"></column>
+				<column name="RETURN_PROCESSORID" type="${type.uuid}" valueNumeric="UNHEX(REPLACE('11116da1-0141-43e0-b2cb-553ba6892222', '-',''))"></column>
+				<column name="PROP_CLASS" type="VARCHAR(500)">com.cp.s2si.service.properties.stream.StreamToStringP</column>
+				<column name="PROC_CLASS" type="VARCHAR(500)">com.cp.s2si.service.processors.stream.StreamToString</column>
+				<column name="PROP_JSON" type="${type.clob}">{}</column>
+				<column name="IS_ACTIVE" type="BOOLEAN" valueBoolean="true"></column>
+			</insert>
+			<insert tableName="S2SI_PROC_MAIN">
+				<column name="PROCESSORID" type="${type.uuid}" valueNumeric="UNHEX(REPLACE('11b16da1-0141-43e0-b2cb-553ba6893122', '-',''))"></column>
+				<column name="SCENARIOID" type="BIGINT">0</column>
+				<column name="PROP_CLASS" type="VARCHAR(500)">com.cp.s2si.service.properties.string.StringPrintP</column>
+				<column name="PROC_CLASS" type="VARCHAR(500)">com.cp.s2si.service.processors.string.StringPrint</column>
+				<column name="PROP_JSON" type="${type.clob}">{}</column>
+				<column name="IS_ACTIVE" type="BOOLEAN" valueBoolean="true"></column>
+			</insert>
+			<insert tableName="S2SI_PROC_MAIN">
+				<column name="PROCESSORID" type="${type.uuid}" valueNumeric="UNHEX(REPLACE('11116da1-0141-43e0-b2cb-553ba6892222', '-',''))"></column>
+				<column name="SCENARIOID" type="BIGINT">0</column>
+				<column name="PROP_CLASS" type="VARCHAR(500)">com.cp.s2si.service.properties.string.XPathToBooleanP</column>
+				<column name="PROC_CLASS" type="VARCHAR(500)">com.cp.s2si.service.processors.string.XPathToBoolean</column>
+				<column name="PROP_JSON" type="${type.clob}">{"xpathTrue":"/note/to[text() = 'Tove']", "xpathFalse":"", "defaultBool":"false"}</column>
+				<column name="IS_ACTIVE" type="BOOLEAN" valueBoolean="true"></column>
+			</insert>
+		</changeSet>
+	
+</databaseChangeLog>

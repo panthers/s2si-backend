@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+		
+		<changeSet author="panther" id="processor-init">
+	
+			<createTable tableName="S2SI_PROC_MAIN">
+				<column name="PROCESSORID" type="${type.uuid}">
+					<constraints nullable="false" primaryKey="true" primaryKeyName="PK_S2SI_PROC_MAIN"/>
+				</column>
+				<column name="SCENARIOID" type="BIGINT">
+					<constraints nullable="false" />
+				</column>
+				<column name="NEXT_PROCESSORID" type="${type.uuid}">
+					<constraints nullable="true" />
+				</column>
+				<column name="RETURN_PROCESSORID" type="${type.uuid}">
+					<constraints nullable="true"/>
+				</column>
+				<column name="CHAIN_PROCESSORID" type="${type.uuid}">
+					<constraints nullable="true"/>
+				</column>
+				<column name="DESCRIPTION" type="NVARCHAR(500)">
+					<constraints nullable="true"/>
+				</column>
+				<column name="PROP_CLASS" type="VARCHAR(500)">
+					<constraints nullable="false"/>
+				</column>
+				<column name="PROC_CLASS" type="VARCHAR(500)">
+					<constraints nullable="false"/>
+				</column>
+				<column name="PROP_JSON" type="${type.clob}">
+					<constraints nullable="false"/>
+				</column>
+				<column name="IS_ACTIVE" type="BOOLEAN">
+					<constraints nullable="false"/>
+				</column>
+			</createTable>
+			
+			<createTable tableName="S2SI_PROC_REF">
+				<column name="PROCESSORID" type="${type.uuid}">
+					<constraints nullable="false" />
+				</column>
+				<column name="REFERRED_PROCESSORID" type="${type.uuid}">
+					<constraints nullable="false" />
+				</column>
+			</createTable>
+			
+			<addPrimaryKey columnNames="PROCESSORID, REFERRED_PROCESSORID" tableName="S2SI_PROC_REF" constraintName="PK_S2SI_PROC_REF"/>
+
+		</changeSet>
+		
+</databaseChangeLog>

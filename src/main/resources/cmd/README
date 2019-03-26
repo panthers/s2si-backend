@@ -1,0 +1,103 @@
+User Manuals
+
+NAME
+	s2si - s2si module micro-service
+
+SYNOPSIS
+	java -jar s2si.war --help
+	
+DESCRIPTION
+	The integration and schema related activities micro-service module
+	java -jar s2si.war will start the server.
+	In unix, you can make the war executable with chmod +x s2si.war and simply do ./s2si.war
+
+OPTIONS
+	-h  | --help
+		Print this help manual. i.e. README file.
+		Only a single option at a time works.
+		
+	NO OPTIONS
+		Will start the s2si module with the default tomcat container.
+		
+	-v  | --version
+		Will print the MANIFEST.MF file.
+	
+	-gk | --generateKeys
+		Will print four randomly generated keys to configure the modules.
+		Request Signing Key (RSK): A 32 byte key to sign request headers. Also used to verify the signing.
+		Micro Service Signing Key (MSSK): A 32 byte key to sign micro service request headers. Also used to verify the signing.
+		Request Encryption Key (REK): A 16 byte key to encrypt and decrypt the request headers.
+		Protected Resource Key (PRK): A 16 byte key to generate protected resource keys for dynamically uploaded resources like logo etc.
+		
+	-s  | --service
+		In a unix system, 
+			This flag will dump a systemd unit file (s2si.service). Which can be copied and/or modified and placed under systemd folder
+			generally something like "/etc/systemd/system" or "/usr/lib/systemd/system". Check the systemd folder for your distribution.
+		
+			This wil also dump an s2si.conf file. The file is expected next to the war file and have the same name but suffixed with .conf rather than .war. 
+			For example, a war named /var/myapp/myapp.war will use the configuration file named /var/myapp/myapp.conf.
+			This file can be used to tweak jvm options without modifying the s2si.service file.
+			
+			Note: Modify the s2si.service file to have proper user and file path to the war file.
+			
+			Sample:
+				[Unit]
+				Description=S2SI
+				After=syslog.target
+				
+				[Service]
+				User=anyuser
+				ExecStart=/home/anyuser/s2si.war
+				SuccessExitStatus=143
+				
+				[Install]
+				WantedBy=multi-user.target
+			
+			Issue commands:
+				systemctl daemon-reload
+				systemctl enable s2si.service
+				systemctl start s2si.service
+		
+		In a windows system, 
+			This flag will dump an s2si.exe file. Which can be used to install the service in windows.
+			
+			This flag will also dump an s2si.xml. 
+			
+			Note: Modify s2si.xml to change JVM options.
+			
+			Sample:
+				<service>
+					<id>s2si</id>
+				  	<name>S2SI</name>
+				  	<description>This service runs the S2SI micro service module</description>
+				  	<executable>java</executable>
+				  	<arguments>-Xmx256M -jar "%BASE%\s2si.war"</arguments>
+				  	<logmode>rotate</logmode>
+				</service>
+			
+			Issue Commands:
+				s2si.exe install
+		
+	-p  | --props
+		This flag will dump a sample properties file. application-sample.properties
+
+JVM OPTIONS
+	-Dxxx
+		All the standard jvm options can be passed while executing the s2si module.
+		
+	-Dspring.profiles.active=dev
+		This JVM option will load the application-dev.properties file instead of the standard application.properties file.
+		
+ENVIRONMENT
+	application.properties
+		This is a mandatory file unless JVM option -Dspring.profiles.active is specified.
+	
+	application-dev.properties
+		This is the file which will be used to load properties in such a case where JVM option -Dspring.profiles.active=dev is specified.
+		
+
+AUTHOR
+	Jayant Saikia
+	
+LAST EDIT
+	26th March, 2019

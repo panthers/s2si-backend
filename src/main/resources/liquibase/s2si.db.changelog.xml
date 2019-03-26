@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+		
+	<property name="type.uuid" value="RAW(16)"				dbms="oracle"/>
+	<property name="type.uuid" value="UUID"    				dbms="h2"/>
+	<property name="type.uuid" value="BINARY(16)"    		dbms="mssql"/>
+	<property name="type.uuid" value="BINARY(16)"    		dbms="mysql"/>
+	
+	<property name="type.blob" value="BLOB"					dbms="oracle"/>
+	<property name="type.blob" value="BLOB"    				dbms="h2"/>
+	<property name="type.blob" value="BLOB"    				dbms="mssql"/>
+	<property name="type.blob" value="LONGBLOB"    			dbms="mysql"/>
+	
+	<property name="type.clob" value="TEXT"					dbms="oracle"/>
+	<property name="type.clob" value="CLOB"    				dbms="h2"/>
+	<property name="type.clob" value="CLOB"    				dbms="mssql"/>
+	<property name="type.clob" value="LONGTEXT"    			dbms="mysql"/>
+		
+    <!-- Schema Ordering is Fixed -->
+    <include file="liquibase/s2si.db-quartz-tables.xml"/> <!-- Quartz Persisted Job Schema -->
+    <include file="liquibase/s2si.db-base-schema-master.xml"/> <!-- Base Schema -->
+    <include file="liquibase/s2si.db-base-data-master.xml"/> <!-- Base Data -->
+    <include file="liquibase/test/s2si.db-test-schema.xml" context="test"/> <!-- Base Schema for test -->
+    <include file="liquibase/test/s2si.db-test-data.xml" context="test"/> <!-- Base Data for test -->
+    <include file="liquibase/delta/s2si.db-schema-delta-3.1.xml"/> <!-- 1S. First Schema Delta -->
+    <include file="liquibase/delta/s2si.db-data-delta-3.1.xml"/> <!-- 1D. First Data Delta -->
+</databaseChangeLog>
